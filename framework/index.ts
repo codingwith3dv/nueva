@@ -24,4 +24,4 @@ class Test {
 const myObj = new Test().setup()
 setInterval(() => {
   myObj.inc()
-}, 500);
+}, 600);
