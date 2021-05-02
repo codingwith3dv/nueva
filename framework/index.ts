@@ -1,27 +1,12 @@
-import { reactive } from './core/reactive.js'
-//Core.getRootElementHook('#app');
+import { DOMNode } from './dom/DOMNode.js'
 
 export default class Main {
 
 }
-class Test {
-  
-  setup() {
-    var uid = reactive(0);
-    var uname = reactive('Devesh');
-    const inc = () => {
-      uid.value++
-      console.log(uid.value);
-    }
-    return {
-      uid, 
-      uname, 
-      inc
-    }
-  }
-}
 
-const myObj = new Test().setup()
-setInterval(() => {
-  myObj.inc()
-}, 600);
+const a = DOMNode('ul', {},
+            DOMNode('li', {}, 'Item 1'),
+            DOMNode('li', {}, 'Item 2')
+          )
+
+console.log(a)
