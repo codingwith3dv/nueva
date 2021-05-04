@@ -1,46 +1,47 @@
-import { DOMNode } from './DOMNode.js'
+import { DOMNode, DOMNodeType } from './DOMNode.js'
 
 export class DOMTree {
+
   constructor() {
-    
+
   }
-  
+
   createElementVDOM(element: any) {
     let tree = this;
-    if (typeof element === 'string') {
-      return document.createTextNode(element);
+    if (typeof element === 'string' ||
+      typeof element === 'number') {
+      return document.createTextNode(element.toString());
     }
     let newElement = document.createElement(element.elementName)
-    element.children
+    if (element.children)
+      element.children
       .map((child: any) => tree.createElementVDOM(child))
       .forEach(newElement.appendChild.bind(newElement))
     return newElement;
   }
-  
-  updateDOMElement(root: any, oldValue: any, newValue: any, indexForChild = 0) {
+
+  updateDOMElement(root: any, oldTree: object, newTree: object, indexForChild = 0) {
     var tree = this;
-    if(oldValue == null){
-      root.appendChild(tree.createElementVDOM(newValue));
-    }else if(newValue == null) {
-      root.removeChild(root.childNodes[indexForChild]);
-    }else if(
-      typeof newValue !== typeof oldValue ||
-      typeof newValue === 'string' && 
-      newValue !== oldValue ||
-      newValue.elementName !== oldValue.elementName
-    ){
-      root.replaceChild(
-        tree.createElementVDOM(newValue), 
-        root.childNodes[indexForChild]
-      )
-    }else if(newValue.elementName) {
-      for (var i = 0; i < newValue.children.length || i < oldValue.children.length; i++) {
-        tree.updateDOMElement(
-          root.childNodes[indexForChild], 
-          oldValue.children[i], 
-          newValue.children[i]
-        )
+
+  }
+
+  createDOMMap(root: Node | HTMLElement) {
+    var tree = this;
+    return Array.prototype.map.call(
+      root.childNodes,
+      (node: typeof root) => {
+
+        var details = {
+          content: node.childNodes && node.childNodes.length > 0 ? null : node.textContent,
+          atts: node.nodeType !== 1 ? [] : node.getAttribute(node.attributes),
+          type: node.nodeType === 3 ? 'text' : (node.nodeType === 8 ? 'comment' : node.tagName.toLowerCase()),
+          node: node
+        };
+        details.isSVG = details.type === 'svg';
+        details.children = tree.createDOMMap(node, details.isSVG);
+        return details;
+
       }
-    }
+    )
   }
 }

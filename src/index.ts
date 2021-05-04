@@ -5,24 +5,22 @@ export default class Main {
 
 }
 
-const a = DOMNode('ul', {},
-  DOMNode('li', {}, 'Item 1'),
-  DOMNode('li', {}, 'Item 2')
-)
+const newTree = DOMNode('ul', {}, 
+                  DOMNode('li', {}, 'Item 10'),
+                  DOMNode('li', {}, 'Item 20')
+                )
+                
+const domTree = DOMNode('ul', {}, 
+                  DOMNode('li', {}, 'Item 1'),
+                  DOMNode('li', {}, 'Item 2')
+                )
+                
+const root = document.querySelector('#app');
+var trigger = document.querySelector('#bt')
 
-const b = DOMNode('ul', {},
-  DOMNode('button', {}, 'Item 2'),
-  DOMNode('li', {}, 'Item 3')
-)
+var tree = new DOMTree();
+console.log(tree.createDOMMap(root));
 
-var root = document.getElementById('app');
-var tree = new DOMTree()
-
-var tr = document.getElementById('tr')
-
-if (root)
-  root.appendChild(tree.createElementVDOM(a));
-  
-tr.onclick = () => {
-  tree.updateDOMElement(root, a, b)
-}
+trigger.addEventListener('click', () => {
+  tree.updateDOMElement(root, domTree, newTree);
+});

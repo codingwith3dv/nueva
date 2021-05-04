@@ -13,3 +13,5 @@ export function DOMNode (
     children
   }
 }
+
+export type DOMNodeType = typeof DOMNode
