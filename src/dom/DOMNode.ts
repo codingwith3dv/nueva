@@ -1,17 +1,18 @@
-export function DOMNode (
-  elementName: string,
-  properties: object,
-  ...children: any){
-    
-  var _elementName = elementName;
-  var _properties = properties;
-  var _childen = children;
-  
-  return {
-    elementName, 
-    properties, 
-    children
-  }
+export interface VNode {
+  _elementName: string,
+  _properties: {},
+  _children: any
 }
 
-export type DOMNodeType = typeof DOMNode
+
+export function createElement(
+  elementName: string,
+  properties: object,
+  ...children: any) {
+  const newNode : VNode = {
+    _elementName: elementName,
+    _properties: properties,
+    _children: children,
+  }
+  return newNode
+}
