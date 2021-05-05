@@ -12,8 +12,8 @@ var a = createElement('ul', {},
 
 
 var b = createElement('ul', {}, 
-	        createElement('li',{},"1"),
-	        createElement('li',{},"2"),
+	        createElement('li',{},"Item 3"),
+	        createElement('li',{},"Item 2"),
 	    );
 
 console.log(ObjectUtils.diff(a,b))

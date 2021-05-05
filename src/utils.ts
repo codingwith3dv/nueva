@@ -1,3 +1,5 @@
+import { VNode } from './dom/DOMNode.js'
+
 export interface ObjectComparison {
   added: {};
   updated: {
@@ -14,7 +16,7 @@ export interface Change {
 
 export class ObjectUtils {
 
-  static diff(o1: {}, o2: {}, deep = false): ObjectComparison {
+  static diff(o1: VNode, o2: VNode, deep = false): ObjectComparison {
     const added = {};
     const updated = {};
     const removed = {};
