@@ -1,6 +1,6 @@
 {
   "name": "interfaz",
-  "version": "0.0.1",
+  "version": "0.0.1.1",
   "description": "A component based UI library used for making user interfaces",
   "main": "index.js",
   "scripts": {
