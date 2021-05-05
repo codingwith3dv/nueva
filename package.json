@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/codingwith3dv/interfaz/issues"
   },
-  "homepage": "https://github.com/codingwith3dv/interfaz#readme"
+  "homepage": "https://github.com/codingwith3dv/interfaz#readme", 
+  "dependencies": {
+    "typescript": "^4,2,4"
+  }
 }
