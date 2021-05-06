@@ -1,9 +1,9 @@
-import { VNode } from './dom/DOMNode.js'
+import { VNode } from './dom/VNode.js'
 
 export interface ObjectComparison {
   added: {};
   updated: {
-    [propName: string]: Change;
+    [key: string]: Change;
   };
   removed: {};
   unchanged: {};
@@ -16,46 +16,46 @@ export interface Change {
 
 export class ObjectUtils {
 
-  static diff(o1: VNode, o2: VNode, deep = false): ObjectComparison {
+  static diff(oldValue: VNode, newValue: VNode, deep = false): ObjectComparison {
     const added = {};
     const updated = {};
     const removed = {};
     const unchanged = {};
-    for (const prop in o1) {
-      if (o1.hasOwnProperty(prop)) {
-        const o2PropValue = o2[prop];
-        const o1PropValue = o1[prop];
-        if (o2.hasOwnProperty(prop)) {
-          if (o2PropValue === o1PropValue) {
-            unchanged[prop] = o1PropValue;
+    for (const prop in oldValue) {
+      if (oldValue.hasOwnProperty(prop)) {
+        const newValuePropValue = newValue[prop];
+        const oldValuePropValue = oldValue[prop];
+        if (newValue.hasOwnProperty(prop)) {
+          if (newValuePropValue === oldValuePropValue) {
+            unchanged[prop] = oldValuePropValue;
           } else {
-            updated[prop] = deep && this.isObject(o1PropValue) && this.isObject(o2PropValue) ? this.diff(o1PropValue, o2PropValue, deep) : {newValue: o2PropValue};
+            updated[prop] = deep && this.isObject(oldValuePropValue) && this.isObject(newValuePropValue) ? this.diff(oldValuePropValue, newValuePropValue, deep) : { newValue: newValuePropValue };
           }
         } else {
-          removed[prop] = o1PropValue;
+          removed[prop] = oldValuePropValue;
         }
       }
     }
-    for (const prop in o2) {
-      if (o2.hasOwnProperty(prop)) {
-        const o1PropValue = o1[prop];
-        const o2PropValue = o2[prop];
-        if (o1.hasOwnProperty(prop)) {
-          if (o1PropValue !== o2PropValue) {
-            if (!deep || !this.isObject(o1PropValue)) {
-              updated[prop].oldValue = o1PropValue;
+    for (const prop in newValue) {
+      if (newValue.hasOwnProperty(prop)) {
+        const oldValuePropValue = oldValue[prop];
+        const newValuePropValue = newValue[prop];
+        if (oldValue.hasOwnProperty(prop)) {
+          if (oldValuePropValue !== newValuePropValue) {
+            if (!deep || !this.isObject(oldValuePropValue)) {
+              updated[prop].oldValue = oldValuePropValue;
             }
           }
         } else {
-          added[prop] = o2PropValue;
+          added[prop] = newValuePropValue;
         }
       }
     }
     return { added, updated, removed, unchanged };
   }
 
-  /**
-   * @return if obj is an Object, including an Array.
+  /*
+    @return if obj is an Object, including an Array.
    */
   static isObject(obj: any) {
     return obj !== null && typeof obj === 'object';

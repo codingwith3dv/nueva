@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
-    "test": "tsc"
+    "test": "tsc -w"
   },
   "repository": {
     "type": "git",

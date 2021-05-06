@@ -1,4 +1,4 @@
-import { createElement } from './dom/DOMNode.js'
+import { createElement } from './dom/createElement.js'
 import { ObjectUtils } from './utils.js'
 
 export default class Main {
@@ -16,4 +16,4 @@ var b = createElement('ul', {},
 	        createElement('li',{},"Item 2"),
 	    );
 
-console.log(ObjectUtils.diff(a,b))
+console.log(a);
