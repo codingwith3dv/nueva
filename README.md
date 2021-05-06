@@ -1,1 +1,1 @@
-![npm](https://img.shields.io/npm/v/interfaz?color=%2300bfff)
+[![npm](https://img.shields.io/npm/v/interfaz?color=%2300bfff&style=for-the-badge)](https://www.npmjs.org/package/interfaz)
