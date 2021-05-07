@@ -1,10 +1,20 @@
-export type VNodeTypes = VNode[] | string | number | boolean;
+export type VNodeTypes = 
+    VNode | 
+    string | 
+    number | 
+    boolean |
+    undefined |
+    null;
+export type VNodeType = VNode;
+export type VNodeArrayType = Array<VNodeArrayType | VNodeTypes>;
+export type VNodeChildrenType = string | VNodeArrayType;
 
 export interface VNode {
   _elementName: string;
   _properties: {};
-  _children: VNodeTypes;
+  _children: VNodeChildrenType;
   [key: string]: any;
+  isVNode?: boolean;
 }
 
 export function createVNode(

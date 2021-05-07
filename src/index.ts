@@ -1,18 +1,15 @@
 import { createElement } from './dom/createElement.js'
 import { render } from './dom/render.js'
-import { ObjectUtils } from './utils.js'
+import { ObjectUtils } from './diff.js'
 
 export default class Main {
 
 }
 
 var a = createElement('ul', {}, [
-	        createElement('li',{},["Item 1"]),
-	        createElement('li',{},["Item 2"]),
+	        createElement('li',{},"Item 1"),
+	        createElement('li',{},"Item 2"),
 	    ]);
 
-const t = createElement('p', {}, ['Hello World'])
 var root = document.querySelector('#app');
-var r = render(t);
-console.log(r);
-root.appendChild(r)
+var r = render(a, root);
