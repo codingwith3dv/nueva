@@ -1,36 +1,42 @@
-import { VNode, VNodeChildrenType} from './VNode.js'
+import { 
+  VNode, 
+  VNodeChildrenType 
+} from './VNode.js'
 import {
-  isArray, 
-  isString
+  isArray,
+  isString,
+  isNum
 } from '../utils/is.js'
 
+let rootVNode;
+
 export function render(vnode: VNode, root: Node | HTMLElement) {
-  if(vnode) {
+  if (vnode) {
     patch(null, vnode, root)
   }
 }
 
 const patch = (
-  oldNode: VNode | VNodeChildrenType, 
-  newNode: VNode | VNodeChildrenType, 
+  oldNode: VNode | VNodeChildrenType,
+  newNode: VNode | VNodeChildrenType,
   container: HTMLElement | Node
 ) => {
   renderElement(oldNode as VNode, newNode as VNode, container);
 }
 
 const renderElement = (
-  oldNode: VNode, 
-  newNode: VNode, 
+  oldNode: VNode,
+  newNode: VNode,
   container: HTMLElement | Node
 ) => {
-  if(oldNode === null) {
+  if (oldNode === null) {
     mountElement(newNode, container);
   }
 }
 
 const mountElement = (vnode: VNode, domContainer: HTMLElement | Node) => {
   let domEl = document.createElement(vnode._elementName);
-  if(isString(vnode._children)) {
+  if (isString(vnode._children)) {
     domEl.textContent = vnode._children as string
   } else if (isArray(vnode._children)) {
     mountChildren(vnode._children as VNodeChildrenType, domEl);
@@ -39,10 +45,10 @@ const mountElement = (vnode: VNode, domContainer: HTMLElement | Node) => {
 }
 
 const mountChildren = (
-  children: VNodeChildrenType, 
+  children: VNodeChildrenType,
   container: HTMLElement | Node
 ) => {
-  for(let i = 0; i < children.length; i++) {
+  for (let i = 0; i < children.length; i++) {
     patch(null, children[i] as VNodeChildrenType, container);
   }
 }

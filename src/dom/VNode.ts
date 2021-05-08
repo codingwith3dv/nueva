@@ -1,6 +1,7 @@
 import {
   isArray,
-  isString
+  isString, 
+  isNum
 } from '../utils/is.js'
 
 export type VNodeTypes =
@@ -42,11 +43,13 @@ const normalizeChildren = (
   children: VNodeChildrenType
 ): void => {
   if (isArray(children)) {
-    for (var i = 0; i < children.length; i++) {
+    for (var i = 0; i < children.length ; i++) {
       let child = children[i] as VNodeChildrenType;
       if(isString(child)) {
         children[i] = createVNode('p', {}, child)
-      }
+      }/* else if (isArray((children[i] as VNode )._children)) {
+        normalizeChildren(children[i] as VNode, (children[i] as VNode)._children)
+      }*/
     }
   } else {
     children = String(children)
