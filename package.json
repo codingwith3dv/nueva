@@ -1,6 +1,6 @@
 {
   "name": "interfaz",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
     "test": "tsc"
