@@ -7,8 +7,8 @@ export default class Main {
 }
 
 var a = createVNode('ul', {}, [
-	        createVNode('li',{},"Item 1"),
-	        createVNode('li',{},"Item 2"),
+	        createVNode('li',{},"Item1"),
+	        createVNode('li',{},"Item2"),
 	    ]);
 
 var root = document.querySelector('#app');
