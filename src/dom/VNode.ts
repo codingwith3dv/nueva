@@ -42,7 +42,12 @@ const normalizeChildren = (
   children: VNodeChildrenType
 ): void => {
   if (isArray(children)) {
-    children = children;
+    for (var i = 0; i < children.length; i++) {
+      let child = children[i] as VNodeChildrenType;
+      if(isString(child)) {
+        children[i] = createVNode('p', {}, child)
+      }
+    }
   } else {
     children = String(children)
   }

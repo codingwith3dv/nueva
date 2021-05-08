@@ -10,6 +10,7 @@ var a = createVNode('ul', {}, [
 	        createVNode('li', {}, "Item1"),
 	        createVNode('li', {}, "Item2"),
 	        createVNode('ul', {}, [
+	           'Hello',
 	            createVNode('li', {}, 'NItem1'),
 	            createVNode('li', {}, 'NItem2')
 	          ])
@@ -17,3 +18,5 @@ var a = createVNode('ul', {}, [
 
 var root = document.querySelector('#app');
 var r = render(a, root);
+
+console.log(a);

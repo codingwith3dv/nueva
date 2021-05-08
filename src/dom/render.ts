@@ -43,6 +43,6 @@ const mountChildren = (
   container: HTMLElement | Node
 ) => {
   for(let i = 0; i < children.length; i++) {
-    patch(null, children[i] as VNode, container);
+    patch(null, children[i] as VNodeChildrenType, container);
   }
 }
