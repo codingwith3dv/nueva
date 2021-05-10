@@ -20,6 +20,7 @@ export interface VNode {
     _elementName: string;
   _properties: {};
   _children: VNodeChildrenType;
+  domEl: Node;
   [key: string]: any;
 }
 
@@ -32,7 +33,8 @@ export function createVNode(
     _isVNode: true,
     _elementName: tagName,
     _properties: props,
-    _children: null
+    _children: null, 
+    domEl: null
   };
   normalizeChildren(vnode, children)
   return vnode;
