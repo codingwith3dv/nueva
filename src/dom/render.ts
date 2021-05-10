@@ -1,12 +1,16 @@
 import {
   VNode,
-  VNodeChildrenType
+  VNodeChildrenType,
+  VNodeArrayType
 } from './VNode.js'
 import {
   isArray,
   isString,
   isNum
 } from '../utils/is.js'
+import {
+  childTypes
+} from '../utils/childTypes.js'
 
 let rootVNode: VNode;
 
@@ -44,15 +48,16 @@ const patchElement = (
   newNode: VNode,
   container: HTMLElement | Node
 ) => {
-  
+  unMount(oldNode, container);
+  mountElement(newNode, container)
 }
 
 const mountElement = (vnode: VNode, domContainer: HTMLElement | Node) => {
   vnode.domEl = document.createElement(vnode._elementName);
   
-  if (isString(vnode._children)) {
+  if (vnode._childType & childTypes.TEXT) {
     vnode.domEl.textContent = vnode._children as string
-  } else if (isArray(vnode._children)) {
+  } else if (vnode._childType & childTypes.ARRAY) {
     mountChildren(vnode._children as VNodeChildrenType, vnode.domEl);
   }
   domContainer.appendChild(vnode.domEl)
@@ -65,4 +70,18 @@ const mountChildren = (
   for (let i = 0; i < children.length; i++) {
     patch(null, children[i] as VNodeChildrenType, container);
   }
+}
+
+const unMount = (
+  elToRemove: VNode,
+  container: HTMLElement | Node
+) => {
+  if(!elToRemove || !elToRemove.domEl) return;
+  if(elToRemove._childType & childTypes.ARRAY) {
+    (elToRemove._children as VNodeArrayType).forEach((node) => {
+      unMount(node as VNode, elToRemove.domEl)
+    })
+  }
+  container.removeChild(elToRemove.domEl);
+  elToRemove.domEl = null;
 }

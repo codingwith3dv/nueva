@@ -1,21 +1,13 @@
 import { createVNode, VNode } from './dom/VNode.js'
 import { render } from './dom/render.js'
 import { reactive } from './core/reactive.js'
+import { childTypes } from './utils/childTypes.js'
 
 export default class Main {
 
 }
 
-var r = reactive(20);
-r.subscribe((value) => {
-  console.log(value);
-});
-
-setInterval(() => {
-  r.value = Math.random();
-}, 1000)
-
-/*var a = createVNode('ul', {}, [
+var a = createVNode('ul', {}, [
 	        createVNode('li', {}, Math.random() as unknown as string),
 	        createVNode('li', {}, "Item2"),
 	        createVNode('ul', {}, [
@@ -39,4 +31,4 @@ setInterval(() => {
   	          ])
   	        ]);
   render(a, root)
-}, 1000)*/
+}, 10)
