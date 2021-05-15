@@ -4,7 +4,7 @@
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
     "test": "tsc",
-    "build": "rollup ./dist/index.js --file ./build/bundle.js --format iife"
+    "rollitup": "rollup ./dist/index.js --file ./build/bundle.js --format iife"
   },
   "repository": {
     "type": "git",
