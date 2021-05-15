@@ -48,17 +48,22 @@ const patchElement = (
   newNode: VNode,
   container: HTMLElement | Node
 ) => {
+  if(oldNode === newNode) return;
+  mountElement(newNode, container);
   unMount(oldNode, container);
-  mountElement(newNode, container)
 }
 
 const mountElement = (vnode: VNode, domContainer: HTMLElement | Node) => {
   vnode.domEl = document.createElement(vnode._elementName);
   
   if (vnode._childType & childTypes.TEXT) {
-    vnode.domEl.textContent = vnode._children as string
+    vnode.domEl.appendChild(document.createTextNode(vnode._children.toString()))
   } else if (vnode._childType & childTypes.ARRAY) {
     mountChildren(vnode._children as VNodeChildrenType, vnode.domEl);
+  }
+  
+  for(const i of Object.keys(vnode._properties)) {
+    (vnode.domEl as HTMLElement).setAttribute(i, vnode._properties[i])
   }
   domContainer.appendChild(vnode.domEl)
 }

@@ -1,4 +1,4 @@
-import { createVNode, VNode } from './dom/VNode.js'
+import { createVElement } from './dom/Element.js'
 import { render } from './dom/render.js'
 import { reactive } from './core/reactive.js'
 import { childTypes } from './utils/childTypes.js'
@@ -7,28 +7,31 @@ export default class Main {
 
 }
 
-var a = createVNode('ul', {}, [
-	        createVNode('li', {}, Math.random() as unknown as string),
-	        createVNode('li', {}, "Item2"),
-	        createVNode('ul', {}, [
-	           'Hello',
-	            createVNode('li', {}, Math.random() as unknown as string),
-	            createVNode('li', {}, 'NItem2')
+var a = createVElement('ul', { style: 'background-color: green' }, [
+	        createVElement('li', {}, Math.random() as unknown as string),
+	        createVElement('li', {}, "Item2"),
+	        createVElement('ul', {}, [
+	            'Hello',
+	            createVElement('li', {}, Math.random() as unknown as string),
+	            createVElement('li', {}, 'NItem2')
 	          ])
 	        ]);
 
 var root = document.querySelector('#app');
-render(a, root);
+//render(a, root);
 
-setInterval(() => {
+console.log(a);
+
+/*setInterval(() => {
   a = createVNode('ul', {}, [
   	        createVNode('li', {}, Math.random() as unknown as string),
   	        createVNode('li', {}, "Item2"),
   	        createVNode('ul', {}, [
-  	           'Hello',
+  	           Math.random() > 0.5 ? '1' : '0',
   	            createVNode('li', {}, Math.random() as unknown as string),
-  	            createVNode('li', {}, 'NItem2')
+  	            createVNode('li', {}, 'NItem')
   	          ])
   	        ]);
   render(a, root)
-}, 10)
+}, 1000)
+*/
