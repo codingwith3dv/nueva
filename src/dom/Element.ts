@@ -43,11 +43,11 @@ export function createVElement(
     children: null,
     childrenType: null
   }
-  normalizeChildren(newVElem, _children);
+  setupChildrenWithParent(newVElem, _children);
   return newVElem;
 }
 
-const normalizeChildren = (
+const setupChildrenWithParent = (
   _elem: VElement,
   _children: VElementChildrenType
 ) => {
