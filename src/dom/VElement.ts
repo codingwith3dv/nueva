@@ -38,7 +38,6 @@ const setupChildrenWithParent = (
   let dll = new DOMDll();
 
   Array.from(_children).forEach((item: DOMNode) => {
-    item.parent = _elem;
     dll.append(item);
   })
   _elem.children = dll;

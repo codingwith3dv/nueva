@@ -8,7 +8,6 @@ export class DOMNode {
   next: DOMNode;
   props: {};
   children: DOMDll;
-  parent: DOMNode;
   textChildren: string;
   childType: childTypes;
 }
