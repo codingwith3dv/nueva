@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/interfaz?color=%2300bfff&style=for-the-badge)](https://www.npmjs.org/package/interfaz)
+[![npm](https://img.shields.io/npm/v/nueva?color=%2300bfff&style=for-the-badge)](https://www.npmjs.org/package/nueva)
 
-# interfaz
+# Nueva
 A reactive¹ component² based UI library³ used for making user interfaces. 
 
 ## Installation
