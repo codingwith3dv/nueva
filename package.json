@@ -1,6 +1,6 @@
 {
-  "name": "interfaz",
-  "version": "0.0.5",
+  "name": "nueva",
+  "version": "0.0.1",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
     "test": "tsc",
@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codingwith3dv/interfaz.git"
+    "url": "git+https://github.com/codingwith3dv/nueva.git"
   },
   "keywords": [
-    "interfaz"
+    "nueva"
   ],
   "author": "codingwith3dv",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codingwith3dv/interfaz/issues"
+    "url": "https://github.com/codingwith3dv/nueva/issues"
   },
-  "homepage": "https://github.com/codingwith3dv/interfaz#readme",
+  "homepage": "https://github.com/codingwith3dv/nueva#readme",
   "devDependencies": {
     "rollup": "^2.47.0",
     "typescript": "^4.2.4"
