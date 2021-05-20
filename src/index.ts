@@ -74,6 +74,8 @@ const createElem = (
                      null;
     if(isString(childs[i])) {
       newEl.textChild = childs[i].toString();
+    } else {
+      newEl.children = childs[i] as VElement[];
     }
     newEl.next = isInArrayBounds(i+1,childs.length) && (childs[i+1] as VElement)?.isNode
                    ? childs[i+1] as VElement :
@@ -95,4 +97,4 @@ var a = createElem(
     'Hi2'
   ]
 )
-console.log(a);
+console.dir(a);
