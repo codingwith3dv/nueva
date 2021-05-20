@@ -4,8 +4,8 @@
 A reactive¹ component² based UI library³ used for making user interfaces. 
 
 ## Installation
-- npm: `npm install interfaz`
-- yarn: `yarn add interfaz`
+- npm: `npm install nueva`
+- yarn: `yarn add nueva`
 
 ## Contribution 
 Pull requests and contributions are always accepted
