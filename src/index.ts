@@ -90,8 +90,8 @@ var a = createElem(
     'Hi1',
     createElem(
       [
-        'NHi1',
-        'NHi2'
+        'NHI1',
+        'NHI2'
       ]
     ),
     'Hi2'
