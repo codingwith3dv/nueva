@@ -75,7 +75,7 @@ const createElem = (
     if(isString(childs[i])) {
       newEl.textChild = childs[i].toString();
     } else {
-      newEl.children = childs[i] as VElement[];
+      newEl.children = childs[i] as unknown as Array<VElement>;
     }
     newEl.next = isInArrayBounds(i+1,childs.length) && (childs[i+1] as VElement)?.isNode
                    ? childs[i+1] as VElement :
@@ -87,14 +87,14 @@ const createElem = (
 
 var a = createElem(
   [
-    'Hi1',
+    'Hello1',
     createElem(
       [
-        'NHI1',
-        'NHI2'
+        'NHello1',
+        'NHello2',
       ]
     ),
-    'Hi2'
+    'Hello2'
   ]
 )
 console.dir(a);
