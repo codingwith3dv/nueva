@@ -1,3 +1,5 @@
+<p style-"display: flex; justify-content: center;">![](./assets/nueva.png)</p>
+
 [![npm](https://img.shields.io/npm/v/nueva?color=%2300bfff&style=for-the-badge)](https://www.npmjs.org/package/nueva)
 
 # Nueva
