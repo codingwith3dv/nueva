@@ -6,7 +6,7 @@
   [![npm](https://img.shields.io/npm/v/nueva?color=%2300bfff&style=for-the-badge)](https://www.npmjs.org/package/nueva)
 </div>
 
-A reactive¹ component² based UI library³ used for making user interfaces. 
+A reactive component based UI library used for making user interfaces. 
 
 ## Installation
 - npm: `npm install nueva`
