@@ -44,7 +44,7 @@ export const createElem = (
   return newElem;
 }
 export const nextSibling = (
-  node: VElementType,
+  node: any,
   parent: VElement
 ) => {
   if (!parent) {
