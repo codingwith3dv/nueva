@@ -1,28 +1,46 @@
 import {
   isArray,
-  isString
+  isString,
+  isInArrayBounds
 } from '../utils/is.js'
-import {
-  childTypes
-} from '../utils/childTypes.js'
-import {
-  DOMNode,
-  DOMChildrenType
-} from './dom-array/DOMDll.js'
 
-export function createVElement(
-  _type: string,
-  _props: {},
-  _children: Array < DOMNode | string > | string,
-) {
-  let newVElem = new DOMNode();
-  
-  return newVElem;
+interface VElement {
+  children: Array < VElement > ;
+  textChild: string;
+  isNode: boolean;
 }
 
-const setupChildrenWithParent = (
-  _elem: DOMNode,
-  _children: Array < DOMNode >
+const newVElem = (
+  childs: Array < VElement > ,
+  text: string
 ) => {
-  
+  return {
+    children: childs,
+    textChild: text,
+    isNode: true
+  } as VElement;
+}
+
+export const createElem = (
+  childs: Array < VElement | string > | string
+) => {
+  let parent = newVElem(
+    [],
+    null
+  )
+  if (isString(childs)) {
+    parent.textChild = childs.toString();
+    return parent
+  }
+
+  for (let i = 0; i < childs.length; i++) {
+    let newEl = newVElem([], null)
+    if (isString(childs[i])) {
+      newEl.textChild = childs[i].toString();
+    } else {
+      newEl.children = childs[i] as unknown as Array < VElement > ;
+    }
+    parent.children.push(newEl);
+  }
+  return parent;
 }

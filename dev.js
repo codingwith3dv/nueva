@@ -49,13 +49,13 @@ function watchMain() {
   // doesn't use `this` at all.
   const origCreateProgram = host.createProgram;
   host.createProgram = (rootNames, options, host, oldProgram) => {
-    console.log("** We're about to create the program! **");
+    //console.log(chalk.white('File changes found. ')+chalk.yellow('Starting compilation'));
     return origCreateProgram(rootNames, options, host, oldProgram);
   };
   const origPostProgramCreate = host.afterProgramCreate;
 
   host.afterProgramCreate = program => {
-    console.log("** We finished making the program! **");
+    //console.log(chalk.green('No Errors Found ')+chalk.white('Watching for file changes'));
     origPostProgramCreate(program);
   };
 
