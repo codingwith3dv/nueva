@@ -4,43 +4,52 @@ import {
   isInArrayBounds
 } from '../utils/is.js'
 
-interface VElement {
-  children: Array < VElement > ;
-  textChild: string;
-  isNode: boolean;
-}
+type VElementType =
+  VElement |
+  string |
+  number |
+  boolean
+type VElementChildrenType =
+  Array<VElement>
 
-const newVElem = (
-  childs: Array < VElement > ,
-  text: string
-) => {
-  return {
-    children: childs,
-    textChild: text,
-    isNode: true
-  } as VElement;
+interface VElement {
+  type: string;
+  children: VElementChildrenType;
+  isNode: boolean;
+  textChild: string;
+  parent: VElement;
 }
 
 export const createElem = (
-  childs: Array < VElement | string > | string
+  type: string,
+  ...child: any
 ) => {
-  let parent = newVElem(
-    [],
-    null
-  )
-  if (isString(childs)) {
-    parent.textChild = childs.toString();
-    return parent
+  let len = child.length - 1;
+  let children = Array(len);
+  let newElem: VElement = {
+    type,
+    isNode: true,
+    children: [],
+    textChild: null,
+    parent: null
   }
-
-  for (let i = 0; i < childs.length; i++) {
-    let newEl = newVElem([], null)
-    if (isString(childs[i])) {
-      newEl.textChild = childs[i].toString();
-    } else {
-      newEl.children = childs[i] as unknown as Array < VElement > ;
-    }
-    parent.children.push(newEl);
+  for (var i = 0; i <= len; i++) {
+    children[i] = typeof child[i] === "object" ? child[i]
+      : {
+        isNode: true,
+        textChild: child[i] as string,
+      } as VElement;
   }
-  return parent;
+  newElem.children = children;
+  return newElem;
+}
+export const nextSibling = (
+  node: VElementType,
+  parent: VElement
+) => {
+  if (!parent) {
+    return null
+  }
+  const i = parent.children.indexOf(node);
+  return parent.children[i + 1] || null;
 }
