@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
-    "test": "tsc",
-    "rollitup": "rollup ./dist/index.js --file ./build/bundle.js --format iife"
+    "dev": "node ./scripts/dev.js",
+    "build": "node ./scripts/build-rollup.js"
   },
   "repository": {
     "type": "git",

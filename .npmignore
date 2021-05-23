@@ -1,0 +1,8 @@
+/.github
+/assets
+/dist
+/node_modules
+/scripts
+/src
+index.html
+tsconfig.json

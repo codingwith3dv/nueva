@@ -1,7 +1,5 @@
 import {
-  isArray,
-  isString,
-  isInArrayBounds
+  isObject
 } from '../utils/is.js'
 
 type VElementType =
@@ -34,7 +32,7 @@ export const createElem = (
     parent: null
   }
   for (var i = 0; i <= len; i++) {
-    children[i] = typeof child[i] === "object" ? child[i]
+    children[i] = isObject(child[i]) ? child[i]
       : {
         isNode: true,
         textChild: child[i] as string,
