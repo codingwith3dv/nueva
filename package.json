@@ -1,6 +1,7 @@
 {
   "name": "nueva",
-  "version": "0.0.2-alpha01",
+  "version": "0.0.2-alpha02",
+  "main": "index.js",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
     "dev": "node ./scripts/dev.js",
