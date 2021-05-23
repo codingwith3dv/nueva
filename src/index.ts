@@ -1,6 +1,7 @@
 import {
   createElem,
-  nextSibling
+  nextSibling,
+  prevSibling
 } from './dom/VElement.js'
 
 export default class Main {
@@ -19,10 +20,5 @@ var a = createElem(
 )
 
 console.log(nextSibling(
-  createElem(
-    'div',
-    'NHello1',
-    'NHello2',
-  ),
-  a
+  a.children[2].children[0]
 ));

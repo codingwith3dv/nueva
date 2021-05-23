@@ -39,17 +39,28 @@ export const createElem = (
         isNode: true,
         textChild: child[i] as string,
       } as VElement;
+    children[i].parent = newElem;
   }
   newElem.children = children;
   return newElem;
 }
-export const nextSibling = (
+export const nextSibling = ( 
   node: any,
-  parent: VElement
 ) => {
+  const parent = node?.parent;
   if (!parent) {
     return null
   }
   const i = parent.children.indexOf(node);
   return parent.children[i + 1] || null;
+}
+export const prevSibling = ( 
+  node: any,
+) => {
+  const parent = node?.parent;
+  if (!parent) {
+    return null
+  }
+  const i = parent.children.indexOf(node);
+  return parent.children[i - 1] || null;
 }
