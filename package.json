@@ -1,6 +1,6 @@
 {
   "name": "nueva",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
     "dev": "node ./scripts/dev.js",
