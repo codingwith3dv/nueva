@@ -10,7 +10,7 @@ type VElementType =
 type VElementChildrenType =
   Array<VElement>
 
-interface VElement {
+export interface VElement {
   type: string;
   children: VElementChildrenType;
   isNode: boolean;
