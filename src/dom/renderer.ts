@@ -10,6 +10,7 @@ export const render = (
   elemToRender: VElement,
   container: Node
 ): Node => {
+  if(!elemToRender) return null;
   const { type, textChild, children } = elemToRender;
   if (!container) return null;
   if (!type) {
@@ -30,17 +31,15 @@ const renderChildren = (
   children: Array < VElement > | string,
   container: Node
 ) => {
-  if (isArray(children)) {
-    children.forEach((item: VElement) => {
-      if (item?.textChild) {
-        container.appendChild(document.createTextNode(item.textChild as string));
-      } else if (item?.type) {
-        let newElem = document.createElement(item.type);
-        renderChildren(item.children ? item.children : item.textChild, newElem);
-        container.appendChild(newElem);
-      }
-    })
-  } else {
-    container.appendChild(document.createTextNode(children as string))
-  }
+  isArray(children) && children.forEach((item: VElement) => {
+    if (item?.textChild) {
+      container.appendChild(document.createTextNode(item.textChild as string));
+    } else if (item?.type) {
+      let newElem = document.createElement(item.type);
+      renderChildren(item.children ? item.children : item.textChild, newElem);
+      container.appendChild(newElem);
+    }
+  })
+
+  isString(children) && container.appendChild(document.createTextNode(children as string))
 }
