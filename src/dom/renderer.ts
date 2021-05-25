@@ -6,7 +6,7 @@ const render = (
   elemToRender: VElement,
   container: Node
 ): Node => {
-  const { type, textChiln, children } = elemToRender;
+  const { type, textChild, children } = elemToRender;
   if(!container) return null;
   if(!type) {
     const newNode = document.createTextNode(textChild || '');
