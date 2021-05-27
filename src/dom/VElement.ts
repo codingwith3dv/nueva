@@ -1,6 +1,10 @@
 import {
-  isObject
+  isObject,
+  isString
 } from '../utils/is.js'
+import {
+  childTypes
+} from '../utils/childTypes.js'
 
 type VElementType =
   VElement |
@@ -16,6 +20,12 @@ export interface VElement {
   isNode: boolean;
   textChild: string;
   parent: VElement;
+  childType: childTypes;
+}
+
+const setChildType = (elem: VElement) => {
+  elem.childType = childTypes.ARRAY;
+  return elem;
 }
 
 export const createElem = (
@@ -29,17 +39,25 @@ export const createElem = (
     isNode: true,
     children: [],
     textChild: null,
-    parent: null
+    parent: null,
+    childType: null
+  }
+  if((child as Array<any>).every(e => isString(e))) {
+    newElem.textChild = (child as Array<any>).join('');
+    newElem.childType = childTypes.TEXT;
+    return newElem
   }
   for (var i = 0; i <= len; i++) {
-    children[i] = isObject(child[i]) ? child[i]
+    children[i] = isObject(child[i]) ? setChildType(child[i])
       : {
         isNode: true,
         textChild: child[i] as string,
+        childType: childTypes.TEXT
       } as VElement;
     children[i].parent = newElem;
   }
   newElem.children = children;
+  newElem.childType = childTypes.ARRAY;
   return newElem;
 }
 export const nextSibling = ( 
