@@ -32,12 +32,12 @@ const renderChildren = (
   container: Node
 ) => {
   isArray(children) && children.forEach((item: VElement) => {
-    if (item?.textChild) {
-      container.appendChild(document.createTextNode(item.textChild as string));
-    } else if (item?.type) {
+    if (item?.type) {
       let newElem = document.createElement(item.type);
       renderChildren(item.children ? item.children : item.textChild, newElem);
       container.appendChild(newElem);
+    } else {
+      container.appendChild(document.createTextNode(item.textChild as string));
     }
   })
 
