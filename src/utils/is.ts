@@ -1,6 +1,6 @@
 export const isArray = Array.isArray
 export const isString = (arg: any) => {
-  return arg && typeof arg === "string";
+  return arg && typeof arg === "string" || arg instanceof String;
 }
 export const isNum = (arg: any) => {
   return arg && typeof arg === "number";

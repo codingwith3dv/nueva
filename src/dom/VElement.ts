@@ -18,7 +18,6 @@ export interface VElement {
   type: string;
   children: VElementChildrenType;
   isNode: boolean;
-  textChild: string;
   parent: VElement;
   childType: childTypes;
 }
@@ -38,22 +37,12 @@ export const createElem = (
     type,
     isNode: true,
     children: null,
-    textChild: null,
     parent: null,
     childType: null
   }
-  if((child as Array<any>).every(e => isString(e))) {
-    newElem.textChild = (child as Array<any>).join('');
-    newElem.childType = childTypes.TEXT;
-    return newElem
-  }
   for (var i = 0; i <= len; i++) {
     children[i] = isObject(child[i]) ? setChildType(child[i])
-      : {
-        isNode: true,
-        textChild: child[i] as string,
-        childType: childTypes.TEXT
-      } as VElement;
+      : new String(child[i])
     children[i].parent = newElem;
   }
   newElem.children = children;
