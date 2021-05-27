@@ -37,7 +37,7 @@ export const createElem = (
   let newElem: VElement = {
     type,
     isNode: true,
-    children: [],
+    children: null,
     textChild: null,
     parent: null,
     childType: null
