@@ -1,16 +1,17 @@
 import {
-  isObject, //
-  isString,
+  isObject,
+  isString
 } from '../utils/is.js';
 import {
-  childTypes, //
+  childTypes
 } from '../utils/childTypes.js';
 
 type VElementType =
-  | VElement //
+  | VElement
   | string
   | number
   | boolean;
+
 type VElementChildrenType = Array<VElement>;
 
 export interface VElement {
@@ -22,14 +23,14 @@ export interface VElement {
 }
 
 const setChildType = (
-  elem: VElement //
+  elem: VElement
 ) => {
   elem.childType = childTypes.ARRAY;
   return elem;
 };
 
 export const createElem = (
-  type: string, //
+  type: string,
   ...child: any
 ) => {
   let len = child.length - 1;
@@ -52,7 +53,7 @@ export const createElem = (
   return newElem;
 };
 export const nextSibling = (
-  node: any //
+  node: any
 ) => {
   const parent = node?.parent;
   if (!parent) {
@@ -62,7 +63,7 @@ export const nextSibling = (
   return parent.children[i + 1] || null;
 };
 export const prevSibling = (
-  node: any //
+  node: any
 ) => {
   const parent = node?.parent;
   if (!parent) {

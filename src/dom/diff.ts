@@ -1,12 +1,12 @@
 import {
-  VElement, //
+  VElement
 } from './VElement.js';
 import {
-  childTypes, //
+  childTypes
 } from '../utils/childTypes.js';
 
 const diff = (
-  oldTree: VElement, //
+  oldTree: VElement,
   newTree: VElement
 ) => {
   if (newTree === null || newTree === undefined) {

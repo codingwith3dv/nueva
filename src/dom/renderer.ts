@@ -1,13 +1,13 @@
 import {
-  VElement, //
+  VElement
 } from './VElement.js';
 import {
-  isArray, //
-  isString,
+  isArray,
+  isString
 } from '../utils/is.js';
 
 export const render = (
-  elemToRender: VElement, //
+  elemToRender: VElement,
   container: Node
 ): Node => {
   if (!elemToRender) return null;

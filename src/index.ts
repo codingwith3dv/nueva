@@ -1,13 +1,15 @@
 import {
-  createElem, //
+  createElem,
   nextSibling,
-  prevSibling,
+  prevSibling
 } from './dom/VElement.js';
-import { render } from './dom/renderer.js';
+import { 
+  render
+} from './dom/renderer.js';
 
 export {
-  createElem, //
+  createElem,
   nextSibling,
   prevSibling,
-  render,
+  render
 };
