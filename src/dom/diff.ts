@@ -1,7 +1,14 @@
-import { VElement } from './VElement.js';
-import { childTypes } from '../utils/childTypes.js';
+import {
+  VElement, //
+} from './VElement.js';
+import {
+  childTypes, //
+} from '../utils/childTypes.js';
 
-const diff = (oldTree: VElement, newTree: VElement) => {
+const diff = (
+  oldTree: VElement, //
+  newTree: VElement
+) => {
   if (newTree === null || newTree === undefined) {
     //TODO: unmount the element or component
   } else if (oldTree?.type !== newTree?.type) {

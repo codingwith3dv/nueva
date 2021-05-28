@@ -5,7 +5,8 @@ const glob = require("glob");
 const options = {
   semi: true,
   singleQuote: true,
-  parser: "babel-ts"
+  parser: "babel-ts",
+  printWidth: 80
 };
 
 var getDirectories = function(src, callback) {

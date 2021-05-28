@@ -1,7 +1,15 @@
-import { VElement } from './VElement.js';
-import { isArray, isString } from '../utils/is.js';
+import {
+  VElement, //
+} from './VElement.js';
+import {
+  isArray, //
+  isString,
+} from '../utils/is.js';
 
-export const render = (elemToRender: VElement, container: Node): Node => {
+export const render = (
+  elemToRender: VElement, //
+  container: Node
+): Node => {
   if (!elemToRender) return null;
   const { type, children } = elemToRender;
   if (!container) return null;
