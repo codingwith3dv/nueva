@@ -2,7 +2,7 @@ import {
   VElement
 } from '../dom/VElement.js'
 
-class PQ {
+export class PQ {
   Vprocesses: Array<VElement>;
   constructor() {
     this.Vprocesses = new Array<VElement>();
