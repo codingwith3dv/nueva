@@ -1,15 +1,15 @@
 import {
-  VElement
-} from '../dom/VElement.js'
+  NuevaComponent
+} from './component.js'
 
-export class PQ {
-  Vprocesses: Array<VElement>;
+class PQ {
+  Vprocesses: Array<NuevaComponent>;
   constructor() {
-    this.Vprocesses = new Array<VElement>();
+    this.Vprocesses = new Array<NuevaComponent>();
   }
   
   enqueue (
-    Vprocess: VElement
+    Vprocess: NuevaComponent
   ) {
     this.Vprocesses.push(Vprocess);
   }
@@ -18,3 +18,5 @@ export class PQ {
     return this.Vprocesses.shift();
   }
 }
+
+export const mainProcessQueue = new PQ();
