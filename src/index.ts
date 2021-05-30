@@ -12,7 +12,7 @@ export {
   nextSibling,
   prevSibling,
   render
-};
+}
 export * from './utils/is.js'
 export * from './dom-core/processQueue.js'
 export * from './core/reactive.js'
