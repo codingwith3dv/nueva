@@ -5,13 +5,17 @@ import {
   isArray,
   isString
 } from '../utils/is.js';
+import {
+  NuevaComponent
+} from '../dom-core/component.js'
 
 export const render = (
-  elemToRender: VElement,
+  elemToRender: unknown,
   container: Node
 ): Node => {
   if (!elemToRender) return null;
-  const { type, children } = elemToRender;
+  
+  const { type, children } = elemToRender as VElement;
   if (!container) return null;
   const rootNode = document.createElement(type);
   if (children) {

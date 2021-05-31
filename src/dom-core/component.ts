@@ -1,13 +1,14 @@
 import {
   mainProcessQueue
 } from './processQueue.js'
+import {
+  VElement
+} from '../dom/VElement.js'
 
-class NuevaComponent {
-  $$ = this;
-  update() {
-    mainProcessQueue.enqueue(this.$$);
-  }
+interface ComponentBluePrint {
+  render(): VElement;
 }
+
 export {
-  NuevaComponent
+  ComponentBluePrint as NuevaComponent
 }

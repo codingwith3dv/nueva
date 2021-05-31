@@ -29,10 +29,10 @@ const setChildType = (
   return elem;
 };
 
-export const createElem = (
+function createElem (
   type: string,
   ...child: any
-) => {
+) {
   let len = child.length - 1;
   let children = Array(len);
   let newElem: VElement = {
@@ -52,6 +52,7 @@ export const createElem = (
   newElem.childType = childTypes.ARRAY;
   return newElem;
 };
+
 export const nextSibling = (
   node: any
 ) => {
@@ -72,3 +73,6 @@ export const prevSibling = (
   const i = parent.children.indexOf(node);
   return parent.children[i - 1] || null;
 };
+export {
+  createElem
+}
