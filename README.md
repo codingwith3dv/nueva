@@ -17,7 +17,3 @@ Pull requests and contributions are always accepted
 
 #### Note
 ¹ Reactivity is working but not implemented in rendering process
-
-² Component is not implemented yet but will be implemented
-
-³ It cannot be used as a library until I do some work
