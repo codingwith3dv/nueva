@@ -3,7 +3,8 @@ import {
 } from './VElement.js';
 import {
   isArray,
-  isString
+  isString,
+  isObject
 } from '../utils/is.js';
 import {
   NuevaComponent
@@ -15,10 +16,10 @@ export const render = (
 ): Node => {
   if (!elemToRender) return null;
   
-  const { type, children } = elemToRender as VElement;
+  const { type_, children } = elemToRender as VElement;
   if (!container) return null;
-  const rootNode = document.createElement(type);
-  if (children) {
+  const rootNode = isString(type_) ? document.createElement(type_.toString()) : null;
+  if (children && rootNode) {
     if (isArray(children)) {
       renderChildren(children as Array<VElement>, rootNode);
     }
@@ -32,8 +33,8 @@ const renderChildren = (
 ) => {
   isArray(children) &&
     children.forEach((item: any, i: number) => {
-      if (item?.type) {
-        let newElem = document.createElement(item.type);
+      if (item?.type_) {
+        let newElem = document.createElement(item.type_);
         renderChildren(item?.children, newElem);
         container.appendChild(newElem);
       } else if (isString(item)) {

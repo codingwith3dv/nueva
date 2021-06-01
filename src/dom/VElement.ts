@@ -15,7 +15,7 @@ type VElementType = |
 type VElementChildrenType = Array < VElement > ;
 
 export interface VElement {
-  type: string;
+  type_: string | object;
   children: VElementChildrenType;
   isNode: boolean;
   parent: VElement;
@@ -30,21 +30,17 @@ const setChildType = (
 };
 
 function createElem(
-  type: string,
+  type_: string | object,
   ...child: any
 ) {
+  
   let newElem: VElement = {
-    type,
+    type_: (type_ as string),
     isNode: true,
     children: null,
     parent: null,
     childType: null,
   };
-  if(type && type.length > 0) {
-    if(type[0] && type[0].toUpperCase() === type[0]) {
-      
-    }
-  }
   if (child && child.length) {
     let len = child?.length - 1;
     let children = Array(len);

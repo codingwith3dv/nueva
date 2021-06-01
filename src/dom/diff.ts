@@ -11,7 +11,7 @@ const diff = (
 ) => {
   if (newTree === null || newTree === undefined) {
     //TODO: unmount the element or component
-  } else if (oldTree?.type !== newTree?.type) {
+  } else if (oldTree?.type_ !== newTree?.type_) {
     //TODO: rebuild the whole component
   }
   //TODO: none of above find diff and return patch
