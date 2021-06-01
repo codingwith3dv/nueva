@@ -10,5 +10,5 @@ interface ComponentBluePrint {
 }
 
 export {
-  ComponentBluePrint as NuevaComponent
+  ComponentBluePrint as Component
 }

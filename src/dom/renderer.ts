@@ -7,7 +7,7 @@ import {
   isObject
 } from '../utils/is.js';
 import {
-  NuevaComponent
+  Component
 } from '../dom-core/component.js'
 
 export const render = (
@@ -19,6 +19,7 @@ export const render = (
   const { type_, children } = elemToRender as VElement;
   if (!container) return null;
   const rootNode = isString(type_) ? document.createElement(type_.toString()) : null;
+  if (!rootNode) return null;
   if (children && rootNode) {
     if (isArray(children)) {
       renderChildren(children as Array<VElement>, rootNode);

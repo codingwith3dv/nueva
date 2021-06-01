@@ -6,5 +6,5 @@ export const isNum = (arg: any) => {
   return arg && typeof arg === 'number';
 };
 export const isObject = (arg: any) => {
-  return arg && typeof arg === 'object';
+  return arg && typeof arg === 'object' || arg instanceof Object;
 };

@@ -1,15 +1,15 @@
 import {
-  NuevaComponent
+  Component
 } from './component.js'
 
 class PQ {
-  Vprocesses: Array<NuevaComponent>;
+  Vprocesses: Array<Component>;
   constructor() {
-    this.Vprocesses = new Array<NuevaComponent>();
+    this.Vprocesses = new Array<Component>();
   }
   
   enqueue (
-    Vprocess: NuevaComponent
+    Vprocess: Component
   ) {
     this.Vprocesses.push(Vprocess);
   }
