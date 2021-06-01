@@ -10,23 +10,29 @@ A reactive component based UI library used for making user interfaces.
 
 ## Usage
 - npm: 
-`npm install nueva`
+```bash
+npm install nueva
+```
 - yarn: 
-`yarn add nueva`
+```bash
+yarn add nueva
+```
 - cdn: 
-`<script src="https://unpkg.com/nueva@0.0.5/build/nueva.js"></script>`
+```html
+<script src="https://unpkg.com/nueva@0.0.5/build/nueva.js"></script>
+```
 
 ## Examples
 - For CDN
-```
+```javascript
 class App {
-    render() {
-      return nueva.createElem(
-        'div',
-        nueva.createElem('h1', 'I am H1'),
-        nueva.createElem('h2', 'I am H2')
-      )
-    }
+  render() {
+    return nueva.createElem(
+      'div',
+      nueva.createElem('h1', 'I am H1'),
+      nueva.createElem('h2', 'I am H2')
+    )
   }
+}
 nueva.render(nueva.createElem(new App()), document.getElementById('app'))
 ```
