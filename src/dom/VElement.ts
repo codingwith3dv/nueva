@@ -6,13 +6,13 @@ import {
   childTypes
 } from '../utils/childTypes.js';
 
-type VElementType =
-  | VElement
-  | string
-  | number
-  | boolean;
+type VElementType = |
+  VElement |
+  string |
+  number |
+  boolean;
 
-type VElementChildrenType = Array<VElement>;
+type VElementChildrenType = Array < VElement > ;
 
 export interface VElement {
   type: string;
@@ -29,12 +29,10 @@ const setChildType = (
   return elem;
 };
 
-function createElem (
+function createElem(
   type: string,
   ...child: any
 ) {
-  let len = child.length - 1;
-  let children = Array(len);
   let newElem: VElement = {
     type,
     isNode: true,
@@ -42,14 +40,23 @@ function createElem (
     parent: null,
     childType: null,
   };
-  for (var i = 0; i <= len; i++) {
-    children[i] = isObject(child[i])
-      ? setChildType(child[i])
-      : new String(child[i]);
-    children[i].parent = newElem;
+  if(type && type.length > 0) {
+    if(type[0] && type[0].toUpperCase() === type[0]) {
+      
+    }
   }
-  newElem.children = children;
-  newElem.childType = childTypes.ARRAY;
+  if (child && child.length) {
+    let len = child?.length - 1;
+    let children = Array(len);
+    for (var i = 0; i <= len; i++) {
+      children[i] = isObject(child[i]) ?
+        setChildType(child[i]) :
+        new String(child[i]);
+      children[i].parent = newElem;
+    }
+    newElem.children = children;
+    newElem.childType = childTypes.ARRAY;
+  }
   return newElem;
 };
 
