@@ -19,13 +19,13 @@ yarn add nueva
 ```
 - cdn: 
 ```html
-<script src="https://unpkg.com/nueva@0.0.5/build/nueva.js"></script>
+<script src="https://unpkg.com/nueva@0.0.7/build/nueva.js"></script>
 ```
 
 ## Examples
 - For CDN
 ```javascript
-class App {
+class App extends nueva.Component{
   render() {
     return nueva.createElem(
       'div',
