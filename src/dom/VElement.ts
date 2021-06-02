@@ -36,7 +36,9 @@ function createElem(
   ...child: any
 ) {
   if(typeof type_OrVElement.render === "function") {
-    return type_OrVElement.render();
+    let node = type_OrVElement.render();
+    setupChildren(child, node as VElement);
+    return node;
   } else if(type_OrVElement.isNode) {
     let node = type_OrVElement;
     setupChildren(child, node as VElement);
@@ -58,15 +60,15 @@ const setupChildren = (
   elem: VElement
 ) => {
   if (child && child.length) {
+    if(!elem.children) elem.children = [];
     let len = child?.length - 1;
-    let children = Array(len);
     for (var i = 0; i <= len; i++) {
-      children[i] = isObject(child[i]) ?
+      const child_: any = isObject(child[i]) ?
         setChildType(child[i]) :
         new String(child[i]);
-      children[i].parent = elem;
+      child_.parent = elem;
+      elem.children.push(child_);
     }
-    elem.children = (children);
     elem.childType = childTypes.ARRAY;
   }
 }

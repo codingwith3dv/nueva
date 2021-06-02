@@ -5,8 +5,8 @@ import {
   VElement
 } from '../dom/VElement.js'
 
-interface ComponentBluePrint {
-  render(): VElement;
+abstract class ComponentBluePrint {
+  abstract render(): VElement;
 }
 
 export {
