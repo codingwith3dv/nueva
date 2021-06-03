@@ -15,14 +15,14 @@ abstract class ComponentBluePrint {
   ): void {
     this.oldTree = node;
   }
-  createStateFull(
-    value: any
-  ): Reactive {
-    return null;
+  createStateFull<T>(
+    value: T
+  ): Reactive<T> {
+    return reactive<T>(this, value);
   };
   rerender(
   ): void {
-    
+    console.log('Rerender');
   }
 }
 
