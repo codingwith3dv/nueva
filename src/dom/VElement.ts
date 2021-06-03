@@ -37,6 +37,7 @@ function createElem(
 ) {
   if(typeof type_OrVElement.render === "function") {
     let node = type_OrVElement.render();
+    type_OrVElement.setOldTree(node);
     setupChildren(child, node as VElement);
     return node;
   } else if(type_OrVElement.isNode) {
