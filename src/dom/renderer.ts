@@ -10,6 +10,14 @@ import {
   Component
 } from '../dom-core/component.js'
 
+export var cachedData: {
+  root: Node,
+  oldTree: VElement
+} = {
+  root: null,
+  oldTree: null
+}
+
 export const render = (
   elemToRender: unknown,
   container: Node
@@ -20,12 +28,14 @@ export const render = (
   if (!container) return null;
   const rootNode = isString(type_) ? document.createElement(type_.toString()) : null;
   if (!rootNode) return null;
+  cachedData.root = rootNode;
   if (children && rootNode) {
     if (isArray(children)) {
       renderChildren(children as Array<VElement>, rootNode);
     }
   }
   container.appendChild(rootNode);
+  cachedData.oldTree = elemToRender as VElement;
   return rootNode;
 };
 const renderChildren = (

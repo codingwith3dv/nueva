@@ -4,7 +4,7 @@ export function reactive(value_in: any) {
 
 type subscriberCallback = (value: any) => void;
 
-class Reactive {
+export class Reactive {
   __value__: any;
   handler: subscriberCallback;
   constructor(value_in: any) {
