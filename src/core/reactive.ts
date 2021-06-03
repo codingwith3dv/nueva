@@ -1,5 +1,9 @@
-export function reactive(value_in: any) {
-  return new Reactive(value_in);
+import {
+  Component
+} from '../dom-core/component.js'
+
+export function reactive(component: Component, value_in: any) {
+  return new Reactive(component, value_in);
 }
 
 type subscriberCallback = (value: any) => void;
@@ -7,8 +11,10 @@ type subscriberCallback = (value: any) => void;
 export class Reactive {
   __value__: any;
   handler: subscriberCallback;
-  constructor(value_in: any) {
+  component: Component;
+  constructor(component_in: Component, value_in: any) {
     this.__value__ = value_in;
+    this.component = component_in;
   }
 
   get value() {
@@ -18,6 +24,7 @@ export class Reactive {
   set value(v: any) {
     this.__value__ = v;
     this.handler(this.__value__);
+    this.component.rerender();
   }
 
   subscribe(_handler: subscriberCallback) {

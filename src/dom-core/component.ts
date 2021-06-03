@@ -20,7 +20,7 @@ abstract class ComponentBluePrint {
   ): Reactive {
     return null;
   };
-  private rerender(
+  rerender(
   ): void {
     
   }
