@@ -5,8 +5,17 @@ import {
 import {
   VElement
 } from '../dom/VElement.js'
+import {
+  mainProcessQueue
+} from './processQueue.js'
 
-abstract class ComponentBluePrint {
+const rerender = (
+  component: Component
+) => {
+  mainProcessQueue.enqueue(component);
+}
+
+abstract class Component {
   abstract render(): VElement;
   state: any;
   private oldTree: VElement;
@@ -20,12 +29,9 @@ abstract class ComponentBluePrint {
   ): Reactive<T> {
     return reactive<T>(this, value);
   };
-  rerender(
-  ): void {
-    console.log('Rerender');
-  }
 }
 
 export {
-  ComponentBluePrint as Component
+  Component,
+  rerender
 }

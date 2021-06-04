@@ -1,5 +1,6 @@
 import {
-  Component
+  Component,
+  rerender
 } from '../dom-core/component.js'
 
 export function reactive<T>(component: Component, value_in: any) {
@@ -26,7 +27,7 @@ export class Reactive<T> {
     if(this.handler) {
       this.handler(this.__value__);
     }
-    this.component?.rerender();
+    rerender(this.component);
   }
 
   subscribe(_handler: subscriberCallback) {
