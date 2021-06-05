@@ -1,10 +1,9 @@
 import {
-  Component,
-  rerender
-} from '../dom-core/component.js'
+  VElement
+} from '../dom/VElement.js'
 
-export function reactive<T>(component: Component, value_in: any) {
-  return new Reactive<T>(component, value_in);
+export function reactive<T>(value_in: any) {
+  return new Reactive<T>(value_in);
 }
 
 type subscriberCallback = (value: any) => void;
@@ -12,10 +11,9 @@ type subscriberCallback = (value: any) => void;
 export class Reactive<T> {
   __value__: T;
   handler: subscriberCallback;
-  component: Component;
-  constructor(component_in: Component, value_in: T) {
+  elemsToUpdate: Array<VElement> = [];
+  constructor(value_in: T) {
     this.__value__ = value_in;
-    this.component = component_in;
   }
 
   get value() {
@@ -27,7 +25,12 @@ export class Reactive<T> {
     if(this.handler) {
       this.handler(this.__value__);
     }
-    rerender(this.component);
+  }
+  
+  pushElem(
+    elem: VElement
+  ) {
+    this.elemsToUpdate.push(elem);
   }
 
   subscribe(_handler: subscriberCallback) {
