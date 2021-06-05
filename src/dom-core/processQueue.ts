@@ -1,15 +1,17 @@
 import {
-  Component
-} from './component.js'
+  VElement
+} from '../dom/VElement.js'
+
+type VProcessType = Array<VElement>;
 
 class PQ {
-  Vprocesses: Array<Component>;
+  Vprocesses: Array<VElement | VProcessType>;
   constructor() {
-    this.Vprocesses = new Array<Component>();
+    this.Vprocesses = new Array<VElement>();
   }
   
   enqueue (
-    Vprocess: Component
+    Vprocess: VElement | VProcessType
   ) {
     this.Vprocesses.push(Vprocess);
   }
