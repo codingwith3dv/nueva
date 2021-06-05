@@ -8,6 +8,12 @@ import {
 import {
   Component
 } from '../dom-core/component.js'
+import {
+  Reactive
+} from '../core/reactive.js'
+import {
+  mainProcessQueue
+} from '../dom-core/processQueue.js'
 type VElementType = |
   VElement |
   string |
@@ -16,7 +22,7 @@ type VElementType = |
 
 type VElementChildrenType = Array < any > ;
 
-export interface VElement {
+interface VElement {
   type_: string | object;
   children: VElementChildrenType;
   isNode: boolean;
@@ -37,7 +43,6 @@ function createElem(
 ) {
   if(typeof type_OrVElement.render === "function") {
     let node = type_OrVElement.render();
-    type_OrVElement.setOldTree(node);
     setupChildren(child, node as VElement);
     return node;
   } else if(type_OrVElement.isNode) {
@@ -50,7 +55,7 @@ function createElem(
     isNode: true,
     children: null,
     parent: null,
-    childType: null,
+    childType: null
   };
   setupChildren(child, newElem);
   return newElem;
@@ -64,6 +69,10 @@ const setupChildren = (
     if(!elem.children) elem.children = [];
     let len = child?.length - 1;
     for (var i = 0; i <= len; i++) {
+      if(child[i] instanceof Reactive) {
+        child[i]?.pushElem(elem);
+        child[i] = child[i]?.value;
+      }
       const child_: any = isObject(child[i]) ?
         setChildType(child[i]) :
         new String(child[i]);
@@ -74,7 +83,7 @@ const setupChildren = (
   }
 }
 
-export const nextSibling = (
+const nextSibling = (
   node: any
 ) => {
   const parent = node?.parent;
@@ -84,7 +93,7 @@ export const nextSibling = (
   const i = parent.children.indexOf(node);
   return parent.children[i + 1] || null;
 };
-export const prevSibling = (
+const prevSibling = (
   node: any
 ) => {
   const parent = node?.parent;
@@ -94,6 +103,15 @@ export const prevSibling = (
   const i = parent.children.indexOf(node);
   return parent.children[i - 1] || null;
 };
+const rerender = (
+  elem: Array < VElement >
+) => {
+  mainProcessQueue.enqueue(elem);
+}
 export {
-  createElem
+  VElement,
+  createElem,
+  prevSibling,
+  nextSibling,
+  rerender
 }
