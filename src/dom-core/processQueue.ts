@@ -12,11 +12,11 @@ class PQ {
   
   enqueue (
     Vprocess: VElement | VProcessType
-  ) {
+  ): void {
     this.Vprocesses.push(Vprocess);
   }
   
-  dequeue () {
+  dequeue (): VElement | VProcessType {
     return this.Vprocesses.shift();
   }
 }

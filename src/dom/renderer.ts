@@ -31,7 +31,7 @@ export const render = (
 const renderChildren = (
   children: Array<VElement | string> | string,
   container: Node
-) => {
+): void => {
   isArray(children) &&
     children.forEach((item: any, i: number) => {
       if (item?.type_) {

@@ -2,21 +2,23 @@ import {
   VElement
 } from '../dom/VElement.js'
 
-export function reactive<T>(value_in: any) {
+export function reactive<T>(
+  value_in: any
+): Reactive<T> {
   return new Reactive<T>(value_in);
 }
 
 type subscriberCallback = (value: any) => void;
 
 export class Reactive<T> {
-  __value__: T;
-  handler: subscriberCallback;
-  elemsToUpdate: Array<VElement> = [];
+  private __value__: T;
+  private handler: subscriberCallback;
+  private elemsToUpdate: Array<VElement> = [];
   constructor(value_in: T) {
     this.__value__ = value_in;
   }
 
-  get value() {
+  get value(): T {
     return this.__value__;
   }
 
@@ -29,15 +31,15 @@ export class Reactive<T> {
   
   pushElem(
     elem: VElement
-  ) {
+  ): void {
     this.elemsToUpdate.push(elem);
   }
 
-  subscribe(_handler: subscriberCallback) {
+  subscribe(_handler: subscriberCallback): void {
     this.handler = _handler;
   }
 
-  valueOf() {
+  valueOf(): T {
     return this.__value__;
   }
 }

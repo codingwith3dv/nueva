@@ -32,7 +32,7 @@ interface VElement {
 
 const setChildType = (
   elem: VElement
-) => {
+): VElement => {
   elem.childType = childTypes.ARRAY;
   return elem;
 };
@@ -40,7 +40,7 @@ const setChildType = (
 function createElem(
   type_OrVElement: any,
   ...child: any
-) {
+): VElement {
   if(typeof type_OrVElement.render === "function") {
     let node = type_OrVElement.render();
     setupChildren(child, node as VElement);
@@ -64,7 +64,7 @@ function createElem(
 const setupChildren = (
   child: any,
   elem: VElement
-) => {
+): void => {
   if (child && child.length) {
     if(!elem.children) elem.children = [];
     let len = child?.length - 1;
@@ -85,7 +85,7 @@ const setupChildren = (
 
 const nextSibling = (
   node: any
-) => {
+): unknown => {
   const parent = node?.parent;
   if (!parent) {
     return null;
@@ -95,7 +95,7 @@ const nextSibling = (
 };
 const prevSibling = (
   node: any
-) => {
+): unknown => {
   const parent = node?.parent;
   if (!parent) {
     return null;
@@ -105,7 +105,7 @@ const prevSibling = (
 };
 const rerender = (
   elem: Array < VElement >
-) => {
+): void => {
   mainProcessQueue.enqueue(elem);
 }
 export {

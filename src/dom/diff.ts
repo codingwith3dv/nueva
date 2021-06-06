@@ -8,7 +8,7 @@ import {
 const diff = (
   oldTree: VElement,
   newTree: VElement
-) => {
+): void => {
   if (newTree === null || newTree === undefined) {
     //TODO: unmount the element or component
   } else if (oldTree?.type_ !== newTree?.type_) {
@@ -21,6 +21,6 @@ const diff = (
 const diffChildren = (
   oldChildren: Array<VElement>,
   newChildren: Array<VElement>
-) => {};
+): void => {};
 
 export { diff };
