@@ -5,18 +5,18 @@ import {
 type VProcessType = Array<VElement>;
 
 class PQ {
-  Vprocesses: Array<VElement | VProcessType>;
+  Vprocesses: VProcessType;
   constructor() {
     this.Vprocesses = new Array<VElement>();
   }
   
   enqueue (
-    Vprocess: VElement | VProcessType
+    Vprocess: VElement
   ): void {
     this.Vprocesses.push(Vprocess);
   }
   
-  dequeue (): VElement | VProcessType {
+  dequeue (): VElement {
     return this.Vprocesses.shift();
   }
 }

@@ -106,7 +106,9 @@ const prevSibling = (
 const rerender = (
   elem: Array < VElement >
 ): void => {
-  mainProcessQueue.enqueue(elem);
+  elem.forEach((el: VElement) => {
+    mainProcessQueue.enqueue(el);
+  })
 }
 export {
   VElement,
