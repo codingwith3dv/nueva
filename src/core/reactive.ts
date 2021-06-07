@@ -1,5 +1,6 @@
 import {
-  VElement
+  VElement,
+  rerender
 } from '../dom/VElement.js'
 
 export function reactive<T>(
@@ -27,6 +28,7 @@ export class Reactive<T> {
     if(this.handler) {
       this.handler(this.__value__);
     }
+    rerender(this.elemsToUpdate);
   }
   
   pushElem(

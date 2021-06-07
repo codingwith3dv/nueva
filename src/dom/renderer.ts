@@ -15,10 +15,12 @@ export const render = (
   container: Node
 ): Node => {
   if (!elemToRender) return null;
+  if (!container) return null; 
   
   const { type_, children } = elemToRender as VElement;
-  if (!container) return null;
-  const rootNode = isString(type_) ? document.createElement(type_.toString()) : null;
+  const rootNode = isString(type_) ? 
+        document.createElement(type_.toString())
+        : null;
   if (!rootNode) return null;
   if (children && rootNode) {
     if (isArray(children)) {

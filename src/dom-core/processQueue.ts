@@ -14,10 +14,15 @@ class PQ {
     Vprocess: VElement
   ): void {
     this.Vprocesses.push(Vprocess);
+    this.flush();
   }
   
   dequeue (): VElement {
-    return this.Vprocesses.shift();
+    return this.Vprocesses.shift() || null;
+  }
+  
+  flush(): void {
+    
   }
 }
 
