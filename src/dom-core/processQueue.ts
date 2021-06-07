@@ -32,8 +32,17 @@ class PQ {
     }
   }
   
-  dequeue (): VElement {
-    return this.Vprocesses.shift() || null;
+  dequeue(): VElement {
+    if(this.front === null) {
+      return null;
+    }
+    const temp = this.front;
+    this.front = this.front.next;
+    
+    if(this.front === null) {
+      this.rear = null;
+    }
+    return temp;
   }
   
   flush(): void {
