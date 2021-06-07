@@ -108,7 +108,8 @@ const rerender = (
 ): void => {
   elem.forEach((el: VElement) => {
     mainProcessQueue.enqueue(el);
-  })
+  });
+  mainProcessQueue.flush();
 }
 export {
   VElement,

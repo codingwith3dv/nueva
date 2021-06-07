@@ -4,8 +4,18 @@ import {
 
 type VProcessType = Array<VElement>;
 
+class PQNode {
+  data: VElement = null;
+  next: PQNode = null;
+  constructor(_data: VElement) {
+    this.data = _data;
+  }
+}
+
 class PQ {
   Vprocesses: VProcessType;
+  front: PQNode = null;
+  rear: PQNode = null;
   constructor() {
     this.Vprocesses = new Array<VElement>();
   }
@@ -13,8 +23,13 @@ class PQ {
   enqueue (
     Vprocess: VElement
   ): void {
-    this.Vprocesses.push(Vprocess);
-    this.flush();
+    const newNode = new PQNode(Vprocess);
+    if(this.rear === null) {
+      this.front = this.rear = newNode;
+    } else {
+      this.rear.next = newNode;
+      this.rear = newNode;
+    }
   }
   
   dequeue (): VElement {
@@ -22,7 +37,7 @@ class PQ {
   }
   
   flush(): void {
-    
+    console.dir(this.front);
   }
 }
 
