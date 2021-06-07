@@ -13,7 +13,7 @@ type subscriberCallback = (value: any) => void;
 
 export class Reactive<T> {
   private __value__: T;
-  private handler: subscriberCallback;
+  private handlers: subscriberCallback[];
   private elemsToUpdate: Array<VElement> = [];
   constructor(value_in: T) {
     this.__value__ = value_in;
@@ -25,8 +25,10 @@ export class Reactive<T> {
 
   set value(v: T) {
     this.__value__ = v;
-    if(this.handler) {
-      this.handler(this.__value__);
+    if(this.handlers) {
+      this.handlers.forEach((handler) => {
+        handler(this.__value__);
+      });
     }
     rerender(this.elemsToUpdate);
   }
@@ -37,8 +39,8 @@ export class Reactive<T> {
     this.elemsToUpdate.push(elem);
   }
 
-  subscribe(_handler: subscriberCallback): void {
-    this.handler = _handler;
+  subscribe(_handlers: subscriberCallback): void {
+    this.handlers.push(_handlers);
   }
 
   valueOf(): T {
