@@ -13,11 +13,10 @@ class PQNode {
 }
 
 class PQ {
-  Vprocesses: VProcessType;
   front: PQNode = null;
   rear: PQNode = null;
   constructor() {
-    this.Vprocesses = new Array<VElement>();
+    
   }
   
   enqueue (
@@ -42,7 +41,7 @@ class PQ {
     if(this.front === null) {
       this.rear = null;
     }
-    return temp;
+    return temp.data;
   }
   
   flush(): void {
