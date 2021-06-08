@@ -5,6 +5,7 @@
     "watch": false,
     "sourceMap": false,
     "outDir": "./dist",
+    "declarationDir": "./types",
     "suppressImplicitAnyIndexErrors": true,
     "moduleResolution": "node",
     "esModuleInterop": true,

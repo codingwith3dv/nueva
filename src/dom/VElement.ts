@@ -28,6 +28,7 @@ interface VElement {
   isNode: boolean;
   parent: VElement;
   childType: childTypes;
+  domEl: Node;
 }
 
 const setChildType = (
@@ -55,7 +56,8 @@ function createElem(
     isNode: true,
     children: null,
     parent: null,
-    childType: null
+    childType: null,
+    domEl: null
   };
   setupChildren(child, newElem);
   return newElem;

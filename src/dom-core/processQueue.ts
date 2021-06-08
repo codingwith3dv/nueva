@@ -45,7 +45,10 @@ class PQ {
   }
   
   flush(): void {
-    console.dir(this.front);
+    let dequeuedElement: VElement;
+    while((dequeuedElement = this.dequeue()) !== null) {
+      
+    }
   }
 }
 

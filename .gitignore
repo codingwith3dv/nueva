@@ -3,3 +3,4 @@ index.html
 node_modules
 /build
 /src/test.ts
+/types
