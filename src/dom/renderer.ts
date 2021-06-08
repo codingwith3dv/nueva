@@ -11,24 +11,26 @@ import {
 } from '../dom-core/component.js'
 
 export const render = (
-  elemToRender: unknown,
+  elemToRender: VElement,
   container: Node
-): Node => {
+): VElement => {
   if (!elemToRender) return null;
   if (!container) return null; 
   
-  const { type_, children } = elemToRender as VElement;
+  const { type_ } = elemToRender;
   const rootNode = isString(type_) ? 
         document.createElement(type_.toString())
         : null;
   if (!rootNode) return null;
-  if (children && rootNode) {
-    if (isArray(children)) {
-      renderChildren(children as Array<VElement>, rootNode);
+  if (elemToRender.children && rootNode) {
+    if (isArray(elemToRender.children)) {
+      renderChildren(elemToRender.children as Array<VElement>, rootNode);
     }
   }
+  elemToRender.domEl = rootNode;
   container.appendChild(rootNode);
-  return rootNode;
+  
+  return elemToRender;
 };
 const renderChildren = (
   children: Array<VElement | string> | string,
@@ -36,12 +38,15 @@ const renderChildren = (
 ): void => {
   isArray(children) &&
     children.forEach((item: any, i: number) => {
+      let newNode: Node = null;
       if (item?.type_) {
         let newElem = document.createElement(item.type_);
-        renderChildren(item?.children, newElem);
-        container.appendChild(newElem);
+        item?.children && renderChildren(item.children, newElem);
+        newNode = newElem;
+        item.domEl = newNode;
       } else if (isString(item)) {
-        container.appendChild(document.createTextNode(item));
+        newNode = document.createTextNode(item);
       }
+      container.appendChild(newNode);
     });
 };
