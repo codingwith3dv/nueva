@@ -106,10 +106,11 @@ const prevSibling = (
   return parent.children[i - 1] || null;
 };
 const rerender = (
-  elem: Array < VElement >
+  elem: Array < VElement >,
+  newData: any
 ): void => {
   elem.forEach((el: VElement) => {
-    mainProcessQueue.enqueue(el);
+    mainProcessQueue.enqueue([el, newData]);
   });
   mainProcessQueue.flush();
 }

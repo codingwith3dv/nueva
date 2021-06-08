@@ -30,7 +30,7 @@ export class Reactive<T> {
         handler(this.__value__);
       });
     }
-    rerender(this.elemsToUpdate);
+    rerender(this.elemsToUpdate, this.__value__);
   }
   
   pushElem(

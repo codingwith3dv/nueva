@@ -1,13 +1,16 @@
 import {
   VElement
 } from '../dom/VElement.js'
+import {
+  Reactive
+} from '../core/reactive.js'
 
-type VProcessType = Array<VElement>;
+type VProcessType = [VElement, Reactive<any>];
 
 class PQNode {
-  data: VElement = null;
+  data: VProcessType = null;
   next: PQNode = null;
-  constructor(_data: VElement) {
+  constructor(_data: VProcessType) {
     this.data = _data;
   }
 }
@@ -20,9 +23,9 @@ class PQ {
   }
   
   enqueue (
-    Vprocess: VElement
+    Vprocess: VProcessType
   ): void {
-    const newNode = new PQNode(Vprocess);
+    const newNode = new PQNode([Vprocess[0], Vprocess[1]]);
     if(this.rear === null) {
       this.front = this.rear = newNode;
     } else {
@@ -31,7 +34,7 @@ class PQ {
     }
   }
   
-  dequeue(): VElement {
+  dequeue(): VProcessType {
     if(this.front === null) {
       return null;
     }
@@ -45,9 +48,10 @@ class PQ {
   }
   
   flush(): void {
-    let dequeuedElement: VElement;
-    while((dequeuedElement = this.dequeue()) !== null) {
-      
+    while (this.front !== null) {
+      let dequeued = this.dequeue();
+      let dequeuedElement = dequeued[0];
+      let dequeuedValue = dequeued[1];
     }
   }
 }
