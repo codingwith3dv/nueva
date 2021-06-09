@@ -72,12 +72,12 @@ const setupChildren = (
   if (child && child.length) {
     if(!elem.children) elem.children = [];
     let len = child?.length - 1;
-    let isStatic = false;
+    let isStatic = true;
     for (var i = 0; i <= len; i++) {
       if(child[i] instanceof Reactive) {
         child[i]?.pushElem(elem);
         child[i] = child[i]?.value;
-        isStatic = true;
+        isStatic = false;
       }
       const child_: any = isObject(child[i]) ?
         setChildType(child[i]) :
