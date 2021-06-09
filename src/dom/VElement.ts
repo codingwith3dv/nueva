@@ -29,6 +29,7 @@ interface VElement {
   parent: VElement;
   childType: childTypes;
   domEl: Node;
+  isStatic: boolean;
 }
 
 const setChildType = (
@@ -57,7 +58,8 @@ function createElem(
     children: null,
     parent: null,
     childType: null,
-    domEl: null
+    domEl: null,
+    isStatic: null
   };
   setupChildren(child, newElem);
   return newElem;
@@ -70,10 +72,12 @@ const setupChildren = (
   if (child && child.length) {
     if(!elem.children) elem.children = [];
     let len = child?.length - 1;
+    let isStatic = false;
     for (var i = 0; i <= len; i++) {
       if(child[i] instanceof Reactive) {
         child[i]?.pushElem(elem);
         child[i] = child[i]?.value;
+        isStatic = true;
       }
       const child_: any = isObject(child[i]) ?
         setChildType(child[i]) :
@@ -81,6 +85,7 @@ const setupChildren = (
       child_.parent = elem;
       elem.children.push(child_);
     }
+    elem.isStatic = isStatic;
     elem.childType = childTypes.ARRAY;
   }
 }
@@ -107,7 +112,7 @@ const prevSibling = (
 };
 const rerender = (
   elem: Array < VElement >,
-  newData: any
+  newData: Reactive< unknown >
 ): void => {
   elem.forEach((el: VElement) => {
     mainProcessQueue.enqueue([el, newData]);
