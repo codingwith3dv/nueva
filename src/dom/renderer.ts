@@ -9,8 +9,12 @@ import {
 import {
   Component
 } from '../dom-core/component.js'
+import {
+  renderFnType,
+  renderChildrenFnType
+} from '../fn-types/dom-fn-types.js'
 
-export const render = (
+export const render: renderFnType = (
   elemToRender: VElement,
   container: Node
 ): VElement => {
@@ -32,7 +36,7 @@ export const render = (
   
   return elemToRender;
 };
-const renderChildren = (
+const renderChildren: renderChildrenFnType = (
   children: Array<VElement | string> | string,
   container: Node
 ): void => {

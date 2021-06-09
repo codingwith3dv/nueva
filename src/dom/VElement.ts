@@ -14,6 +14,12 @@ import {
 import {
   mainProcessQueue
 } from '../dom-core/processQueue.js'
+import {
+  createElemFnType,
+  setupChildrenFnType,
+  siblingReferenceFnType,
+  rerenderFnType
+} from '../fn-types/dom-fn-types.js'
 type VElementType = |
   VElement |
   string |
@@ -39,10 +45,10 @@ const setChildType = (
   return elem;
 };
 
-function createElem(
+const createElem: createElemFnType = (
   type_OrVElement: any,
   ...child: any
-): VElement {
+): VElement => {
   if(typeof type_OrVElement.render === "function") {
     let node = type_OrVElement.render();
     setupChildren(child, node as VElement);
@@ -65,7 +71,7 @@ function createElem(
   return newElem;
 };
 
-const setupChildren = (
+const setupChildren: setupChildrenFnType = (
   child: any,
   elem: VElement
 ): void => {
@@ -90,7 +96,7 @@ const setupChildren = (
   }
 }
 
-const nextSibling = (
+const nextSibling: siblingReferenceFnType = (
   node: any
 ): unknown => {
   const parent = node?.parent;
@@ -100,7 +106,7 @@ const nextSibling = (
   const i = parent.children.indexOf(node);
   return parent.children[i + 1] || null;
 };
-const prevSibling = (
+const prevSibling: siblingReferenceFnType = (
   node: any
 ): unknown => {
   const parent = node?.parent;
@@ -110,7 +116,7 @@ const prevSibling = (
   const i = parent.children.indexOf(node);
   return parent.children[i - 1] || null;
 };
-const rerender = (
+const rerender: rerenderFnType = (
   elem: Array < VElement >,
   newData: Reactive< unknown >
 ): void => {
