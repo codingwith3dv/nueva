@@ -1,11 +1,14 @@
 import {
-  VElement
+  VElement,
+  createElem
 } from '../dom/VElement.js'
 import {
   Reactive
 } from '../core/reactive.js'
-
-type VProcessType = [VElement, Reactive<any>];
+import {
+  render
+} from '../dom/renderer.js'
+type VProcessType = [VElement, Reactive<unknown>];
 
 class PQNode {
   data: VProcessType = null;
@@ -52,6 +55,7 @@ class PQ {
       let dequeued = this.dequeue();
       let dequeuedElement = dequeued[0];
       let dequeuedValue = dequeued[1];
+      
     }
   }
 }
