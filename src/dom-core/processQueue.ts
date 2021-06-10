@@ -51,12 +51,12 @@ class PQ {
   }
   
   flush(): void {
-    while (this.front !== null) {
+    /*while (this.front !== null) {
       let dequeued = this.dequeue();
       let dequeuedElement = dequeued[0];
       let dequeuedValue = dequeued[1];
       
-    }
+    }*/
   }
 }
 

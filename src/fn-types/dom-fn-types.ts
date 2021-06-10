@@ -17,7 +17,7 @@ export type siblingReferenceFnType = (
   node: any
 ) => unknown
 export type rerenderFnType = (
-  elem: Array < VElement > ,
+  elem: Set < VElement > ,
   newData: Reactive < unknown >
 ) => void
 export type renderFnType = (

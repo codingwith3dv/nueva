@@ -14,7 +14,7 @@ type subscriberCallback = (value: any) => void;
 export class Reactive<T> {
   private __value__: T;
   private handlers: subscriberCallback[];
-  private elemsToUpdate: Array<VElement> = [];
+  private elemsToUpdate: Set<VElement> = new Set<VElement>();
   constructor(value_in: T) {
     this.__value__ = value_in;
   }
@@ -36,7 +36,7 @@ export class Reactive<T> {
   pushElem(
     elem: VElement
   ): void {
-    this.elemsToUpdate.push(elem);
+    this.elemsToUpdate.add(elem);
   }
 
   subscribe(_handlers: subscriberCallback): void {

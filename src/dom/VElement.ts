@@ -84,6 +84,8 @@ const setupChildren: setupChildrenFnType = (
         child[i]?.pushElem(elem);
         child[i] = child[i]?.value;
         isStatic = false;
+      } else {
+        isStatic = true;
       }
       const child_: any = isObject(child[i]) ?
         setChildType(child[i]) :
@@ -117,13 +119,14 @@ const prevSibling: siblingReferenceFnType = (
   return parent.children[i - 1] || null;
 };
 const rerender: rerenderFnType = (
-  elem: Array < VElement >,
+  elem: Set < VElement >,
   newData: Reactive< unknown >
 ): void => {
   elem.forEach((el: VElement) => {
     mainProcessQueue.enqueue([el, newData]);
   });
   mainProcessQueue.flush();
+  elem.forEach(el => console.log(el))
 }
 export {
   VElement,
