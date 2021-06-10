@@ -6,3 +6,4 @@
 /src
 index.html
 tsconfig.json
+/types/test.d.ts
