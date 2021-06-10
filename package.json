@@ -1,6 +1,6 @@
 {
   "name": "nueva",
-  "version": "0.0.9",
+  "version": "0.0.9-full",
   "main": "index.js",
   "typings": "./types/index.d.ts",
   "description": "A component based UI library used for making user interfaces",
