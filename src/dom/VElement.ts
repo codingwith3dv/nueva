@@ -36,6 +36,7 @@ interface VElement {
   childType: childTypes;
   domEl: Node;
   isStatic: boolean;
+  reactiveIndices: Array<number>;
 }
 
 const setChildType = (
@@ -65,7 +66,8 @@ const createElem: createElemFnType = (
     parent: null,
     childType: null,
     domEl: null,
-    isStatic: null
+    isStatic: null,
+    reactiveIndices: null
   };
   setupChildren(child, newElem);
   return newElem;
@@ -81,8 +83,12 @@ const setupChildren: setupChildrenFnType = (
     let isStatic = true;
     for (var i = 0; i <= len; i++) {
       if(child[i] instanceof Reactive) {
+        if(!elem.reactiveIndices) {
+          elem.reactiveIndices = [];
+        }
         child[i]?.pushElem(elem);
         child[i] = child[i]?.value;
+        elem.reactiveIndices.push(i);
         isStatic = false;
       } else {
         isStatic = true;
