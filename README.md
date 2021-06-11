@@ -1,7 +1,7 @@
 # Nueva
 
 <div align="center" >
-  <img src="./assets/nueva_new.png" width="200"height="200"/>
+  <img src="./assets/nueva_full_img.png" width="200"height="200"/>
 
   [![npm](https://img.shields.io/npm/v/nueva?color=%2300bfff&style=for-the-badge)](https://www.npmjs.org/package/nueva)
 </div>
