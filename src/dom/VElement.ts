@@ -126,7 +126,6 @@ const rerender: rerenderFnType = (
     mainProcessQueue.enqueue([el, newData]);
   });
   mainProcessQueue.flush();
-  elem.forEach(el => console.log(el))
 }
 export {
   VElement,

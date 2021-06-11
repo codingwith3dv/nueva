@@ -2,6 +2,9 @@ import {
   VElement,
   rerender
 } from '../dom/VElement.js'
+import {
+  hasValueChanged
+} from '../utils/utils.js'
 
 export function reactive<T>(
   value_in: any
@@ -28,13 +31,17 @@ export class Reactive<T> {
   set value(v: T) {
     this.__old_value__ = this.__value__;
     this.__value__ = v;
-    if(this.handlers) {
-      this.handlers.forEach((handler) => {
-        handler(this.__value__);
-      });
-    }
-    if(this.__old_value__ !== this.__value__)
+    
+    if(hasValueChanged(
+      this.__old_value__, this.__value__
+    )) {
+      if(this.handlers) {
+        this.handlers.forEach((handler) => {
+          handler(this.__value__);
+        });
+      }
       rerender(this.elemsToUpdate, this);
+    }
   }
   
   pushElem(
