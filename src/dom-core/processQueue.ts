@@ -52,11 +52,14 @@ class PQ {
   
   flush(): void {
     while (this.front !== null) {
-      let dequeued = this.dequeue();
-      let dequeuedElement = dequeued[0];
-      let dequeuedValue = dequeued[1];
+      let dequeued: VProcessType = this.dequeue();
+      let dequeuedElement = dequeued[0] as VElement;
+      let dequeuedValue = dequeued[1] as Reactive<unknown>;
       
-      
+      dequeuedElement.reactiveIndices
+        ?.forEach((index) => {
+          dequeuedElement.children[index] = dequeuedValue.value
+        })
     }
   }
 }
