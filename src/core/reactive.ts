@@ -7,12 +7,12 @@ import {
 } from '../utils/utils.js'
 
 export function reactive<T>(
-  value_in: any
+  value_in: T
 ): Reactive<T> {
   return new Reactive<T>(value_in);
 }
 
-type subscriberCallback = (value: any) => void;
+type subscriberCallback = (value: unknown) => void;
 
 export class Reactive<T> {
   private __value__: T;
