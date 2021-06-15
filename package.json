@@ -1,9 +1,9 @@
 {
   "name": "nueva",
   "version": "0.1.2",
-  "main": "/dist/nueva.common.js",
-  "module": "/dist/nueva.es.js",
-  "unpkg": "/dist/nueva.es.js",
+  "main": "./build/nueva.common.js",
+  "module": "./build/nueva.es.js",
+  "unpkg": "./build/nueva.es.js",
   "typings": "./types/index.d.ts",
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
