@@ -24,16 +24,19 @@ yarn add nueva
 ```
 
 ## Examples
-- With package managers like npm or yarn
-Use rollup or webpack or parcel for bundling
-Example config for rollup
+- With package managers 
+
+Use rollup or webpack or parcel for bundling. 
+Example config for rollup with plugin-node-resolve
 ```javascript
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 export default {
   input: 'entry-point.js',
   output: {
     file: 'output-file.js',
     format: 'es'
-  }
+  },
+  plugin: [nodeResolve()] 
 }
 ```
 Then use nueva, for example
@@ -42,7 +45,7 @@ import {
   Component,
   createElem,
   render
-} from 'nueva;
+} from 'nueva';
 
 class App extends Component {
   render() {
