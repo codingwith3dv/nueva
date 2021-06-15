@@ -6,7 +6,7 @@
   "description": "A component based UI library used for making user interfaces",
   "scripts": {
     "dev": "node ./node_modules/typescript/bin/tsc -w",
-    "build": "node ./scripts/build-rollup.js"
+    "build": "node ./node_modules/rollup/dist/bin/rollup -c"
   },
   "repository": {
     "type": "git",
