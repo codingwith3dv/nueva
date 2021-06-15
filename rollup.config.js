@@ -3,7 +3,7 @@ export default [
     input: './dist/index.js',
     output: {
       file: './build/nueva.common.js',
-      format: 'iife'
+      format: 'cjs'
     }
   },
   {
