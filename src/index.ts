@@ -15,5 +15,6 @@ export {
 }
 export * from './utils/is.js'
 export * from './dom-core/processQueue.js'
+export * from './dom-core/component.js'
 export * from './core/reactive.js'
 export * from './dom/diff.js'
