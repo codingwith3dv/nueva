@@ -1,1 +1,1 @@
-module.exports = require('./build/nueva.js')
+module.exports = require('./build/nueva.common.js')
