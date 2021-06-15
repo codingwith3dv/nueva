@@ -2,7 +2,7 @@
 /assets
 /dist
 /node_modules
-/scripts
+rollup.config.js
 /src
 index.html
 tsconfig.json
