@@ -1,6 +1,6 @@
 {
   "name": "nueva",
-  "version": "0.1.2",
+  "version": "0.1.2-alpha",
   "main": "./build/nueva.common.js",
   "module": "./build/nueva.es.js",
   "unpkg": "./build/nueva.es.js",
