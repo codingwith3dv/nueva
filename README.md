@@ -20,10 +20,41 @@ yarn add nueva
 ```
 - cdn: 
 ```html
-<script src="https://unpkg.com/nueva@{latest_version}/build/nueva.js"></script>
+<script src="https://unpkg.com/nueva@{latest_version}"></script>
 ```
 
 ## Examples
+- With package managers like npm or yarn
+Use rollup or webpack or parcel for bundling
+Example config for rollup
+```javascript
+export default {
+  input: 'entry-point.js',
+  output: {
+    file: 'output-file.js',
+    format: 'es'
+  }
+}
+```
+Then use nueva, for example
+```javascript
+import {
+  Component,
+  createElem,
+  render
+} from 'nueva;
+
+class App extends Component {
+  render() {
+    return createElem(
+      'div',
+      createElem('h1', 'I am H1'),
+      createElem('h2', 'I am H2')
+    )
+  }
+}
+render(createElem(new App()), document.getElementById('app'))
+```
 - For CDN
 ```javascript
 class App extends nueva.Component {
