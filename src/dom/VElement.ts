@@ -27,9 +27,14 @@ type VElementType = |
   boolean;
 
 type VElementChildrenType = Array < any > ;
+type VElementPropType = [
+  string,
+  string
+];
 
 interface VElement {
   type_: string | object;
+  properties: Array< VElementPropType >;
   children: VElementChildrenType;
   isNode: boolean;
   parent: VElement;
@@ -48,20 +53,30 @@ const setChildType = (
 
 const createElem: createElemFnType = (
   type_OrVElement: any,
+  props: Array < VElementPropType >,
   ...child: any
 ): VElement => {
   if(typeof type_OrVElement.render === "function") {
     let node = type_OrVElement.render();
-    setupChildren(child, node as VElement);
+    setupVElement(
+      node,
+      props,
+      child
+    );
     return node;
   } else if(type_OrVElement.isNode) {
     let node = type_OrVElement;
-    setupChildren(child, node as VElement);
+    setupVElement(
+      node,
+      props,
+      child
+    );
     return node;
   }
   let newElem: VElement = {
     type_: (type_OrVElement as string),
     isNode: true,
+    properties: null,
     children: null,
     parent: null,
     childType: null,
@@ -69,9 +84,26 @@ const createElem: createElemFnType = (
     isStatic: null,
     reactiveIndices: null
   };
-  setupChildren(child, newElem);
+  setupVElement(
+    newElem,
+    props,
+    child
+  );
   return newElem;
 };
+
+const setupVElement = (
+  elem: VElement,
+  props: Array < VElementPropType >,
+  child: any
+) => {
+  if(props) {
+    setupProps(props, elem);
+  }
+  if(child) {
+    setupChildren(child, elem);
+  }
+}
 
 const setupChildren: setupChildrenFnType = (
   child: any,
@@ -102,6 +134,21 @@ const setupChildren: setupChildrenFnType = (
     elem.isStatic = isStatic;
     elem.childType = childTypes.ARRAY;
   }
+}
+
+const setupProps = (
+  props: Array < VElementPropType >,
+  elem: VElement
+) => {
+  if(!elem.properties) {
+    elem.properties = new Array < VElementPropType >();
+  }
+  props.forEach((property) => {
+    elem.properties.push([
+      property[0],
+      property[1]
+    ]);
+  });
 }
 
 const nextSibling: siblingReferenceFnType = (
