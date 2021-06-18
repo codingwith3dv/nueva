@@ -1,5 +1,6 @@
 import {
-  VElement
+  VElement,
+  VElementPropType
 } from '../dom/VElement.js'
 import {
   Reactive
@@ -22,9 +23,10 @@ export type rerenderFnType = (
 ) => void
 export type renderFnType = (
   elemToRender: VElement,
-  container: Node
+  container: HTMLElement
 ) => VElement
 export type renderChildrenFnType = (
+  container: HTMLElement,
   children: Array < VElement | string > | string,
-  container: Node
+  properties: Array<VElementPropType>
 ) => void

@@ -1,5 +1,6 @@
 import {
-  VElement
+  VElement,
+  VElementPropType
 } from './VElement.js';
 import {
   isArray,
@@ -16,7 +17,7 @@ import {
 
 export const render: renderFnType = (
   elemToRender: VElement,
-  container: Node
+  container: HTMLElement
 ): VElement => {
   if (!elemToRender) return null;
   if (!container) return null; 
@@ -28,8 +29,15 @@ export const render: renderFnType = (
   if (!rootNode) return null;
   if (elemToRender.children && rootNode) {
     if (isArray(elemToRender.children)) {
-      renderChildren(elemToRender.children as Array<VElement>, rootNode);
+      renderChildren(
+        rootNode,
+        elemToRender.children as Array<VElement>,
+        elemToRender.properties as Array<VElementPropType>
+      );
     }
+  }
+  if (elemToRender.properties && rootNode) {
+    applyProps(elemToRender.properties, container);
   }
   elemToRender.domEl = rootNode;
   container.appendChild(rootNode);
@@ -37,15 +45,24 @@ export const render: renderFnType = (
   return elemToRender;
 };
 const renderChildren: renderChildrenFnType = (
-  children: Array<VElement | string> | string,
-  container: Node
+  container: HTMLElement,
+  children: Array<VElement | string>,
+  properties?: Array<VElementPropType>
 ): void => {
+  if(!isString(children)) {
+    
+  }
+  
   isArray(children) &&
     children.forEach((item: any, i: number) => {
-      let newNode: Node = null;
+      let newNode: any = null;
       if (item?.type_) {
         let newElem = document.createElement(item.type_);
-        item?.children && renderChildren(item.children, newElem);
+        item?.children && renderChildren(
+          newElem,
+          item.children,
+          item.properties
+        );
         newNode = newElem;
         item.domEl = newNode;
       } else if (isString(item)) {
@@ -53,4 +70,32 @@ const renderChildren: renderChildrenFnType = (
       }
       container.appendChild(newNode);
     });
+};
+
+const applyProps = (
+  props: Array < VElementPropType >,
+  container: HTMLElement
+) => {
+  if(props && props.length) {
+    props.forEach((property) => {
+      applyPropsToElement(
+        property[0],
+        property[1],
+        container
+      );
+    });
+  }
+};
+
+const applyPropsToElement = (
+  attr: string,
+  value: string,
+  elem: HTMLElement
+) => {
+  switch (attr) {
+    case 'class':
+      elem.classList.add(value);
+      break;
+    
+  };
 };

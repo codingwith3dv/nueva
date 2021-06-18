@@ -39,7 +39,7 @@ interface VElement {
   isNode: boolean;
   parent: VElement;
   childType: childTypes;
-  domEl: Node;
+  domEl: HTMLElement;
   isStatic: boolean;
   reactiveIndices: Array<number>;
 }
@@ -182,6 +182,7 @@ const rerender: rerenderFnType = (
 }
 export {
   VElement,
+  VElementPropType,
   createElem,
   prevSibling,
   nextSibling,
