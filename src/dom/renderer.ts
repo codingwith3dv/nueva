@@ -50,7 +50,10 @@ const renderChildren: renderChildrenFnType = (
   properties?: Array<VElementPropType>
 ): void => {
   if(!isString(children)) {
-    
+    properties && applyProps(
+      properties,
+      container
+    );
   }
   
   isArray(children) &&
