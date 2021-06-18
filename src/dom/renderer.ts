@@ -99,6 +99,9 @@ const applyPropsToElement = (
     case 'class':
       elem.classList.add(value);
       break;
+    case 'id':
+      elem.id = value;
+      break;
     
   };
 };
